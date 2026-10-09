@@ -3,30 +3,32 @@
  *
  * [9] Palindrome Number
  */
-import java.util.Arrays;
+
 // @lc code=start
 class Solution {
     public boolean isPalindrome(int x) {
         char[] y = String.valueOf(x).toCharArray();
-        char[] z = new char[y.length];
-        //注意创建等长数组
-        for (int i = 0; i < z.length; i++) {
-            z[i] = y[y.length-1-i];
-            //倒序对应位置始终为length-1-i
+        int before = 0;
+        int after = y.length-1;
+        while(before < after) {
+            //不用for遍历整个数组
+            if(y[before] != y[after]){
+                return false;
+            }
+            before++;
+            after--;
         }
-        if(Arrays.equals(y,z)){
-            //不能直接用==
-            return true;}
-        return false;
+        return true;
     
-    }
-}
-        // for (int i = y.length - 1; i > 0; i--) {
-        //     注意数组不要越界
-        //     for (int j = 0; i<y.length; j++){
-        //         z[i] = y[j];
-        //     }
-            
-        // }
+    }}
+            //这个写法容易在两个数不相等的时候无限循环，单个数无法判断
+            // if(y[before] == y[after]){
+            //     before++;
+            //     after--;
+            //     if(before >= after){
+            //         使用>=来防止交错产生的问题
+            //         return true;
+            //     }
+            // }
 // @lc code=end
 
