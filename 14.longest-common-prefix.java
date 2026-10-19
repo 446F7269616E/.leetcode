@@ -1,0 +1,29 @@
+/*
+ * @lc app=leetcode id=14 lang=java
+ *
+ * [14] Longest Common Prefix
+ */
+
+// @lc code=start
+class Solution {
+    public String longestCommonPrefix(String[] strs) {
+        String result = strs[0];
+
+        for (int i = 1; i < strs.length; i++) {
+            int j = 0;
+
+            while (j < result.length() && j < strs[i].length()) {
+                if (result.charAt(j) != strs[i].charAt(j)) {
+                    break;
+                }
+                j++;
+            }
+
+            result = result.substring(0, j);
+        }
+
+        return result;
+    }
+}
+// @lc code=end
+
