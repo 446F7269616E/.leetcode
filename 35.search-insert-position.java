@@ -7,14 +7,24 @@
 // @lc code=start
 class Solution {
     public int searchInsert(int[] nums, int target) {
-        for (int i = 0; i < nums.length; i++) {
-            if(target <= nums[i]){
-                return i;
+        int left = 0;
+        int right = nums.length - 1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if(target > nums[mid]){
+                left = mid+1;
             }
-            //不用考虑大于的情况
+            else if(target < nums[mid]){
+                right = mid-1;
+            }
+            //中间已经比较过了，所以左右要对应改变，不能直接照搬
+            else{
+                return mid;
+            }
         }
-        return nums.length;
+        return left;
     }
 }
-// @lc code=end
+// @lc code=end                
 
