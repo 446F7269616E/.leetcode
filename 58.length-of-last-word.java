@@ -8,21 +8,18 @@
 class Solution {
     public int lengthOfLastWord(String s) {
         int result = 0;
-        boolean flag = false;
-        for (int i = s.length()-1; i >= 0; i--) {
-            char x = s.charAt(i);
-            if(x != ' '){
-                flag = true;
-            }
-            if (x == ' ' && flag) {
-                return result;
-            }
-            if(x != ' ' && flag){
+
+        for (int i = s.length() - 1; i >= 0; i--) {
+            if (s.charAt(i) != ' ') {
                 result++;
             }
+            else if (result > 0) {
+                return result;
+            }
         }
+        //result本来就可以当成flag
         return result;
-    }
+}
 }
 // @lc code=end
 
