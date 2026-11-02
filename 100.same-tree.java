@@ -6,6 +6,7 @@
 
 // @lc code=start
 
+import java.util.*;
 
 class TreeNode {
       int val;
@@ -22,22 +23,27 @@ class TreeNode {
  
 class Solution {
     public boolean isSameTree(TreeNode p, TreeNode q) {
-        if(p == null && q == null){
-            return true;
-        }
-        if(p == null || q == null){
-            return false;
-        }
-        //空的时候分两种情况比较
+        List<String> result1 = new ArrayList<>();
+        List<String> result2 = new ArrayList<>();
 
-        if(p.val != q.val){
-            return false;
-        }
-        //比较当前节点相不相同
+        traverse(p, result1);
+        traverse(q, result2);
 
-        return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
-        //比较左子树和右子树相不相同
-}
+        return result1.equals(result2);
+    }
+
+    private void traverse(TreeNode node, List<String> result) {
+        if (node == null) {
+            result.add("#");
+            //记录空节点防止结构被破坏
+            return;
+        }
+
+        result.add(String.valueOf(node.val));
+        traverse(node.left, result);
+        traverse(node.right, result);
+        //前序遍历
+    }
 }
 // @lc code=end
 
