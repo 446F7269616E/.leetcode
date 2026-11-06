@@ -21,7 +21,7 @@ class Solution {
 
         int currentRow = 0;
         int direction = 1;
-
+        //direction用于决定下一行在当前行的哪个方向
         for (int i = 0; i < s.length(); i++) {
             rows[currentRow].append(s.charAt(i));
 
