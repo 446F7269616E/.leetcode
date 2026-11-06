@@ -14,9 +14,10 @@ class Solution {
         }
 
         StringBuilder[] rows = new StringBuilder[numRows];
-
+        //使用数组分别存储n行的数据
         for (int i = 0; i < numRows; i++) {
             rows[i] = new StringBuilder();
+            //初始化bulider
         }
 
         int currentRow = 0;
