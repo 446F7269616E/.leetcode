@@ -7,28 +7,20 @@
 // @lc code=start
 class Solution {
     public int maxArea(int[] height) {
-        int max = 0;
-        double maxarea = 0;
-        int maxdis = 0;
-        for (int i = 0; i < height.length; i++) {
-            if(height[i] > height[max]){
-                max = i;
+        int left = 0;
+        int right = height.length - 1;
+        int result = 0;
+        
+        while (right >= left) {
+            result = Math.max(Math.min(height[left],height[right]) * (right - left),result);
+    
+            if(height[left] > height[right]){
+                right--;
             }
+            else left++;
+            
         }
-        //找最长边
-
-        for (int i = 0; i < height.length; i++) {
-            if((Math.abs(max - i) >= maxdis)){
-                //x轴距离最大时更新
-                if(height[max] >= height[i]){
-                    maxarea = Math.pow(Math.min(height[max], height[i]),2);
-                }
-                else maxarea = height[max] * height[i];
-                maxdis = Math.abs(max - i);
-            }
-        }
-
-        return (int)maxarea;
+        return result;
     }
 }
 // @lc code=end
